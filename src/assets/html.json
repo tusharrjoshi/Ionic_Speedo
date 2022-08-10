@@ -1,0 +1,10 @@
+{
+    "Button": "Button",
+    "style":[
+        {
+            "color":"white",
+            "background-color":"blue"
+        }
+
+    ]
+}

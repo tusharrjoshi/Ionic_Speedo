@@ -1,9 +1,10 @@
 <div style="height: 80vh;">
 
-  <div class="example-box" cdkDrag>
-    Drag me around
-  </div>  
 
-  
-
+  <!-- <button (click)="addButton()">Button</button> -->
+  <!-- <div (dragover)="allowDrop($event)" > -->
+    <iframe mwlDroppable name="myiframe" id="myiframe" src="../../assets/template.html"
+      frameborder="2" (drop)="edrop($event)" mwlDroppable></iframe>
+  <!-- </div> -->
+  <button (click)="myfunc()" draggable="true" id="btn">Mybtn</button>
 </div>

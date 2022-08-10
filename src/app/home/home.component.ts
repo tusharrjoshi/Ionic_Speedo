@@ -1,40 +1,43 @@
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import 'jquery-ui-dist/jquery-ui';
-declare var $: any;
-
-
+import { Inject,Component, OnInit , ElementRef} from '@angular/core';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { DOCUMENT } from '@angular/common'; 
+// import { DragAndDropModule } from 'angular-draggable-droppable';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 
+
 export class HomeComponent implements OnInit {
 
-
- 
-  constructor() { }
-
+  constructor(private dbService: NgxIndexedDBService, @Inject(DOCUMENT) document: Document) { }
   ngOnInit() {
-    
+   
+    document.getElementById("btn").addEventListener("dragstart", this.dragstart)
+    document.getElementById("myiframe").addEventListener("dragover", this.dragover)
+
     }
-
-    todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-    done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-  
-    drop(event: CdkDragDrop<string[]>) {
-      if (event.previousContainer === event.container) {
-        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      } else {
-        transferArrayItem(
-          event.previousContainer.data,
-          event.container.data,
-          event.previousIndex,
-          event.currentIndex,
-        );
-      }
-    } 
+   
+    dragover(event) {
+      console.log("dragover")
+    }
+    dragstart(){
+      console.log("dragstart")
+    }
+    allowDrop(ev){
+      ev.preventDefault()
+      console.log("dragovr")
+    }
+    edrop(ev){
+      ev.preventDefault()
+      console.log("dropped")
+      window.frames["myiframe"].document.getElementById("name").innerHTML="<button>I am working!</button>"
+    }
+    myfunc(){
+      
+      console.log
+      window.frames["myiframe"].document.getElementById("name").innerHTML="<button>I am working!</button>"
+    }
 
 }
